@@ -55,6 +55,7 @@ p {
 a {
   color: #000;
   text-decoration: none;
+  align-content: center;
 }
 
 a:hover {

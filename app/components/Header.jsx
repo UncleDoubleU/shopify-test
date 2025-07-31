@@ -37,6 +37,8 @@ export function HeaderMenu({
   primaryDomainUrl,
   viewport,
   publicStoreDomain,
+  isLoggedIn, 
+  cart,
 }) {
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
@@ -78,18 +80,7 @@ export function HeaderMenu({
           </NavLink>
         );
       })}
-    </nav>
-  );
-}
-
-/**
- * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
- */
-function HeaderCtas({isLoggedIn, cart}) {
-  return (
-    <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+      <NavLink prefetch="intent" to="/account" style={activeLinkStyle} className="signin-nav">
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
             {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
@@ -98,6 +89,18 @@ function HeaderCtas({isLoggedIn, cart}) {
       </NavLink>
       <SearchToggle />
       <CartToggle cart={cart} />
+    </nav>
+  );
+}
+
+/**
+ * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
+ */
+function HeaderCtas({}) {
+  return (
+    <nav className="header-ctas" role="navigation">
+      <HeaderMenuMobileToggle />
+      
     </nav>
   );
 }
@@ -115,7 +118,7 @@ function HeaderMenuMobileToggle() {
 }
 
 function SearchToggle() {
-  const {open} = useAside();
+  const {open} = useAside(); 
   return (
     <button className="reset" onClick={() => open('search')}>
       Search
@@ -133,6 +136,7 @@ function CartBadge({count}) {
   return (
     <a
       href="/cart"
+      className='cart-nav'
       onClick={(e) => {
         e.preventDefault();
         open('cart');

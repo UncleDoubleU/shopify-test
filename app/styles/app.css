@@ -8,6 +8,12 @@
   --color-light: #fff;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 img {
   border-radius: 4px;
 }
@@ -141,6 +147,8 @@ button.reset {
   border: 0;
   background: inherit;
   font-size: inherit;
+  width: max-content;
+  align-self: center;
 }
 
 button.reset > * {
@@ -165,6 +173,7 @@ button.reset:hover:not(:has(> *)) {
 .header {
   align-items: center;
   background: #fff;
+  border-bottom: 2px solid #000;
   display: flex;
   height: var(--header-height);
   padding: 0 1rem;
@@ -188,10 +197,14 @@ button.reset:hover:not(:has(> *)) {
 .header-menu-desktop {
   display: none;
   grid-gap: 1rem;
-  @media (min-width: 45em) {
+
+  @media (min-width: 48em) {
     display: flex;
-    grid-gap: 1rem;
+    gap: 1rem;
     margin-left: 3rem;
+    width: 100%;
+    justify-content: space-between;
+    height: 100%;
   }
 }
 
@@ -210,6 +223,19 @@ button.reset:hover:not(:has(> *)) {
   min-width: fit-content;
 }
 
+.signin-nav {
+  text-wrap: nowrap;
+}
+
+.cart-nav {
+  @media (min-width: 48rem) {
+    text-align: right;
+    align-self: center;
+    width: 4.5rem;
+    height: 100%;
+    border-left: 2px solid #000;
+  }
+}
 
 /*
 * --------------------------------------------------
