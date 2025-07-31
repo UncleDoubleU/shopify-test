@@ -188,6 +188,12 @@ button.reset:hover:not(:has(> *)) {
   }
 }
 
+.header-menu-mobile-toggle.reset {
+  border-left: 2px solid black;
+  padding-left: 1rem;
+  height: 100%;
+}
+
 .header-menu-mobile {
   display: flex;
   flex-direction: column;
@@ -208,8 +214,37 @@ button.reset:hover:not(:has(> *)) {
   }
 }
 
+.nav-circle {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #000;
+  margin-right: 0.5rem;
+  background: none;
+}
+.active {
+  .nav-circle {
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #000;
+    margin-right: 0.5rem;
+    background: #000;
+  }
+}
+
 .header-menu-item {
   cursor: pointer;
+}
+
+.header-menu-item:hover,
+.header-menu-item:focus-visible {
+  .nav-circle {
+    background: grey;
+    border: 2px solid grey;
+  }
 }
 
 .header-ctas {
@@ -217,10 +252,21 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   grid-gap: 1rem;
   margin-left: auto;
+  @media (max-width: 48rem) {
+    height: 100%;
+  }
 }
 
 .header-ctas > * {
   min-width: fit-content;
+}
+
+.logo-nav {
+  @media (min-width: 48rem) {
+    height: 100%;
+    padding-right: 1rem;
+    border-right: 2px solid #000;
+  }
 }
 
 .signin-nav {
@@ -231,8 +277,9 @@ button.reset:hover:not(:has(> *)) {
   @media (min-width: 48rem) {
     text-align: right;
     align-self: center;
-    width: 4.5rem;
+    width: 5.5rem;
     height: 100%;
+    padding-left: 1rem;
     border-left: 2px solid #000;
   }
 }

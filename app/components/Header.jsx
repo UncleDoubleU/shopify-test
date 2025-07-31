@@ -10,8 +10,14 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+      <NavLink 
+        prefetch="intent" 
+        to="/" 
+        style={activeLinkStyle} 
+        className="logo-nav" 
+        end
+      >
+        <strong>{shop.name.toUpperCase()}</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -38,6 +44,7 @@ export function HeaderMenu({
   viewport,
   publicStoreDomain,
   isLoggedIn, 
+  isActive,
   cart,
 }) {
   const className = `header-menu-${viewport}`;
@@ -76,14 +83,14 @@ export function HeaderMenu({
             style={activeLinkStyle}
             to={url}
           >
-            {item.title}
+            <span className='nav-circle'></span> {item.title.toUpperCase()}
           </NavLink>
         );
       })}
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle} className="signin-nav">
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+            {(isLoggedIn) => (isLoggedIn ? 'ACCOUNT' : 'SIGN IN')}
           </Await>
         </Suspense>
       </NavLink>
@@ -121,7 +128,7 @@ function SearchToggle() {
   const {open} = useAside(); 
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      SEARCH
     </button>
   );
 }
@@ -148,7 +155,7 @@ function CartBadge({count}) {
         });
       }}
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      CART {count === null ? <span>(&nbsp;)</span> : `(${count})`}
     </a>
   );
 }
@@ -226,7 +233,6 @@ function activeLinkStyle({isActive, isPending}) {
     color: isPending ? 'grey' : 'black',
   };
 }
-
 /** @typedef {'desktop' | 'mobile'} Viewport */
 /**
  * @typedef {Object} HeaderProps
